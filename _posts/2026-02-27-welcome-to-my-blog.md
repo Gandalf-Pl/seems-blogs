@@ -1,8 +1,9 @@
 ---
-layout: post
 title: "欢迎使用我的 Jekyll 博客"
 date: 2026-02-27 11:30:00 +0800
-categories: 随笔
+categories: [随笔]
+tags: [jekyll, github-pages]
+pin: true
 ---
 
 ## 🎉 博客搭建完成
@@ -11,9 +12,14 @@ categories: 随笔
 
 ### 关于这个博客
 
-- **构建工具**: Jekyll
+- **主题**: [Chirpy](https://github.com/cotes2020/jekyll-theme-chirpy) —— 极简、现代、功能丰富的 Jekyll 主题
 - **部署**: GitHub Pages
-- **主题**: Minima
+- **特性**:
+  - 🌙 暗黑模式
+  - 🔍 内置搜索
+  - 📱 响应式设计
+  - 🏷️ 标签和分类
+  - 📊 代码高亮
 
 ### 快速开始
 
@@ -21,10 +27,8 @@ categories: 随笔
 # 本地预览
 bundle install
 bundle exec jekyll serve
-
-# 访问 http://localhost:4000
 ```
 
 ---
 
-*感谢使用 Jekyll + GitHub Pages！*
+*感谢使用 Jekyll + Chirpy！*
