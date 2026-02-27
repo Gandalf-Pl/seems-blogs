@@ -1,0 +1,310 @@
+/* 科技感暗黑主题 - Cyber Terminal */
+
+:root {
+    --bg-color: #0a0a0f;
+    --terminal-bg: #0d1117;
+    --text-color: #e6edf3;
+    --prompt-color: #00ff41;
+    --command-color: #7ee787;
+    --link-color: #58a6ff;
+    --link-hover: #79c0ff;
+    --accent-color: #f0883e;
+    --border-color: #30363d;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+    background: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* 粒子背景画布 */
+#particle-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* 主容器 */
+.container {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 头部 */
+.site-header {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.site-title {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.site-title a {
+    color: var(--text-color);
+    text-decoration: none;
+    position: relative;
+}
+
+/* Glitch 效果 */
+.glitch {
+    position: relative;
+    display: inline-block;
+}
+
+.glitch::before,
+.glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.glitch::before {
+    animation: glitch-1 2s infinite linear alternate-reverse;
+    color: #ff00ff;
+    z-index: -1;
+}
+
+.glitch::after {
+    animation: glitch-2 3s infinite linear alternate-reverse;
+    color: #00ffff;
+    z-index: -2;
+}
+
+@keyframes glitch-1 {
+    0%, 100% { clip-path: inset(0 0 95% 0); transform: translate(-2px, 0); }
+    20% { clip-path: inset(30% 0 50% 0); transform: translate(2px, 0); }
+    40% { clip-path: inset(60% 0 20% 0); transform: translate(-2px, 0); }
+    60% { clip-path: inset(80% 0 5% 0); transform: translate(2px, 0); }
+    80% { clip-path: inset(10% 0 70% 0); transform: translate(-2px, 0); }
+}
+
+@keyframes glitch-2 {
+    0%, 100% { clip-path: inset(95% 0 0 0); transform: translate(2px, 0); }
+    20% { clip-path: inset(50% 0 30% 0); transform: translate(-2px, 0); }
+    40% { clip-path: inset(20% 0 60% 0); transform: translate(2px, 0); }
+    60% { clip-path: inset(5% 0 80% 0); transform: translate(-2px, 0); }
+    80% { clip-path: inset(70% 0 10% 0); transform: translate(2px, 0); }
+}
+
+/* 导航 */
+.site-nav {
+    margin-top: 15px;
+}
+
+.site-nav a {
+    color: var(--link-color);
+    text-decoration: none;
+    margin-right: 20px;
+    transition: color 0.3s;
+}
+
+.site-nav a:hover {
+    color: var(--link-hover);
+    text-shadow: 0 0 10px var(--link-hover);
+}
+
+/* 终端框 */
+.terminal-box {
+    background: var(--terminal-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 255, 65, 0.1);
+}
+
+.terminal-header {
+    background: #161b22;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.terminal-btn {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.terminal-btn.red { background: #ff5f56; }
+.terminal-btn.yellow { background: #ffbd2e; }
+.terminal-btn.green { background: #27c93f; }
+
+.terminal-title {
+    margin-left: 10px;
+    color: #8b949e;
+    font-size: 0.85rem;
+}
+
+.terminal-body {
+    padding: 20px;
+    min-height: 300px;
+}
+
+/* 终端行 */
+.line {
+    margin: 8px 0;
+    font-size: 0.95rem;
+}
+
+.prompt {
+    color: var(--prompt-color);
+    margin-right: 8px;
+}
+
+.command {
+    color: var(--command-color);
+}
+
+.output {
+    color: #8b949e;
+    padding-left: 20px;
+}
+
+/* 光标闪烁 */
+.cursor {
+    animation: blink 1s infinite;
+    color: var(--prompt-color);
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+}
+
+/* 文章列表 */
+.post-item {
+    display: flex;
+    align-items: center;
+    padding: 5px 0;
+    border-bottom: 1px solid #21262d;
+}
+
+.post-item .date {
+    color: #6e7681;
+    min-width: 80px;
+    font-size: 0.85rem;
+}
+
+.post-link {
+    color: var(--link-color);
+    text-decoration: none;
+    margin-left: 15px;
+    transition: all 0.3s;
+}
+
+.post-link:hover {
+    color: var(--link-hover);
+    text-shadow: 0 0 10px var(--link-hover);
+}
+
+/* 文章内容 */
+.post {
+    background: var(--terminal-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 30px;
+}
+
+.post-header {
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.post-title {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+}
+
+.post-meta {
+    color: #6e7681;
+    font-size: 0.9rem;
+}
+
+.post-content {
+    line-height: 1.8;
+}
+
+.post-content h2 {
+    color: var(--accent-color);
+    margin: 30px 0 15px;
+    font-size: 1.4rem;
+}
+
+.post-content p {
+    margin: 15px 0;
+}
+
+.post-content code {
+    background: #161b22;
+    padding: 2px 6px;
+    border-radius: 4px;
+    color: var(--accent-color);
+}
+
+.post-content pre {
+    background: #161b22;
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+    border: 1px solid var(--border-color);
+}
+
+/* 页脚 */
+.site-footer {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+    color: #6e7681;
+    font-size: 0.9rem;
+}
+
+/* 响应式 */
+@media (max-width: 600px) {
+    .container {
+        padding: 10px;
+    }
+    
+    .site-title {
+        font-size: 1.5rem;
+    }
+    
+    .post-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .post-item .date {
+        margin-bottom: 5px;
+    }
+    
+    .post-link {
+        margin-left: 0;
+    }
+}
