@@ -2,15 +2,82 @@
 layout: default
 ---
 
-<article class="post">
-    <header class="post-header">
-        <h1 class="post-title">{{ page.title }}</h1>
-        <div class="post-meta">
-            <span class="date"><span class="prompt">$</span> date: {{ page.date | date: "%Y-%m-%d %H:%M:%S" }}</span>
-        </div>
-    </header>
-
-    <div class="post-content">
-        {{ content }}
+<div class="terminal-box">
+    <div class="terminal-header">
+        <span class="terminal-btn red"></span>
+        <span class="terminal-btn yellow"></span>
+        <span class="terminal-btn green"></span>
+        <span class="terminal-title">{{ page.title | slugify }}.md — vim</span>
     </div>
-</article>
+    
+    <div class="terminal-body post-terminal">
+        <!-- 文章头部信息 -->
+        <div class="post-info-line">
+            <span class="prompt">$</span> <span class="command">stat</span> <span class="file-arg">{{ page.title | slugify }}.md</span>
+        </div>
+        
+        <div class="post-stats">
+            <div class="stat-item">
+                <span class="stat-label">File:</span> <span class="stat-value">{{ page.title }}</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Size:</span> <span class="stat-value">{{ content | size }} bytes</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-label">Modify:</span> <span class="stat-value">{{ page.date | date: "%Y-%m-%d %H:%M:%S" }}</span>
+            </div>
+            {% if page.categories %}
+            <div class="stat-item">
+                <span class="stat-label">Category:</span> <span class="stat-value">{{ page.categories | join: ", " }}</span>
+            </div>
+            {% endif %}
+            {% if page.tags %}
+            <div class="stat-item">
+                <span class="stat-label">Tags:</span> <span class="stat-value tags">{{ page.tags | join: " " }}</span>
+            </div>
+            {% endif %}
+        </div>
+        
+        <!-- 分隔线 -->
+        <div class="terminal-divider">
+            <span class="divider-text">─────── CONTENT ───────</span>
+        </div>
+        
+        <!-- 文章内容 -->
+        <div class="post-content-tech">
+            {{ content }}
+        </div>
+        
+        <!-- 分隔线 -->
+        <div class="terminal-divider">
+            <span class="divider-text">─────── EOF ───────</span>
+        </div>
+        
+        <!-- 导航 -->
+        <div class="post-nav">
+            <div class="line">
+                <span class="prompt">$</span> <span class="command">cd ..</span>
+            </div>            
+            <div class="nav-links">
+                <a href="{{ '/' | relative_url }}" class="nav-link">
+                    <span class="nav-arrow">←</span> 返回首页
+                </a>
+                
+                {% if page.previous %}
+                <a href="{{ page.previous.url | relative_url }}" class="nav-link">
+                    <span class="nav-arrow">↑</span> 上一篇: {{ page.previous.title }}
+                </a>
+                {% endif %}
+                
+                {% if page.next %}
+                <a href="{{ page.next.url | relative_url }}" class="nav-link">
+                    <span class="nav-arrow">↓</span> 下一篇: {{ page.next.title }}
+                </a>
+                {% endif %}
+            </div>            
+            <div class="line">
+                <span class="prompt">$</span> <span class="cursor">█</span>
+            </div>
+        </div>
+    </div>
+</div>
