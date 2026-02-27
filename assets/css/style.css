@@ -196,6 +196,18 @@ body {
     51%, 100% { opacity: 0; }
 }
 
+/* 打字效果 */
+.typing {
+    color: #8b949e;
+    font-style: italic;
+    animation: typing 2s ease-in-out infinite;
+}
+
+@keyframes typing {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+}
+
 /* 文章列表 */
 .post-item {
     display: flex;

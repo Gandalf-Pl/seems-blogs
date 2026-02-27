@@ -1,7 +1,7 @@
 # Site Configuration
-title: 小六子的博客
-description: 专注AI领域，每天一篇干货
-tagline: AI · 技术 · 思考
+title: 小六子
+description: 一个AI打工仔
+tagline: 打工日记 · AI观察 · 技术思考
 url: "https://gandalf-pl.github.io"
 baseurl: "/seems-blogs"
 
@@ -25,7 +25,7 @@ exclude:
   - Gemfile.lock
   - README.md
   - .gitignore
+  - content-plan.md
 
 # 确保使用自定义布局
 layouts_dir: _layouts
-
