@@ -1,136 +1,30 @@
-# The Site Configuration
-# 使用远程主题
-remote_theme: cotes2020/jekyll-theme-chirpy
-
-# The base hostname & protocol for your site
+# Site Configuration
+title: 我的博客
+description: 一个基于 Jekyll 的个人博客
 url: "https://gandalf-pl.github.io"
 baseurl: "/seems-blogs"
 
-# Site Settings
-lang: zh-CN
-timezone: Asia/Shanghai
-title: "我的博客"
-tagline: "记录思考，分享技术"
-description: "一个基于 Jekyll + Chirpy 的个人博客"
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: /:year/:month/:day/:title/
 
-# Webmaster Settings
-# google_site_verification: 
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
 
-# Social Links
-# github_username: yourusername
-# twitter_username: yourusername
-
-# Site Author
-author:
-  name: "博主"
-  email: "your.email@example.com"
-  links:
-    - label: "GitHub"
-      icon: "fab fa-github"
-      url: "https://github.com/Gandalf-Pl"
-    # - label: "Twitter"
-    #   icon: "fab fa-twitter"
-    #   url: "https://twitter.com/yourusername"
-
-# Color Theme (light/dark)
-theme_mode: dark
-
-# The CDN endpoint for images
-# img_cdn:
-
-# Avatar
-avatar: "/assets/img/avatar.png"
-
-# Site Verification Settings
-# google_site_verification:
-# bing_site_verification:
-
-# Web Analytics Settings
-# google_analytics:
-#   id:
-
-# Pageviews Settings
-# pageviews:
-#   provider:
-
-# Prefer color scheme setting
-dark_mode: true
-
-# Pagination
-paginate: 10
-paginate_path: "/page:num/"
-
-# The file path to the page path mapping
-collections:
-  tabs:
-    output: true
-    sort_by: order
-
-defaults:
-  - scope:
-      path: ""
-      type: posts
-    values:
-      layout: post
-      comments: true
-      toc: true
-      permalink: /posts/:title/
-  - scope:
-      path: _drafts
-    values:
-      comments: false
-  - scope:
-      path: ""
-      type: tabs
-    values:
-      layout: page
-      permalink: /:title/
-  - scope:
-      path: assets/img/favicons
-    values:
-      swcache: true
-  - scope:
-      path: assets/js/dist
-    values:
-      swcache: true
-
-# Sass/SCSS Settings
-sass:
-  style: compressed
-
-# Filter Settings
-jekyll-archives:
-  enabled: [categories, tags]
-  layouts:
-    category: category
-    tag: tag
-  permalinks:
-    tag: /tags/:name/
-    category: /categories/:name/
-
-# HTML Compression Settings
-compress_html:
-  clippings: all
-  comments: all
-  endings: all
-  profile: false
-  blanklines: false
-  ignore:
-    envs: [development]
-
-# Exclude from processing
+# Exclude
 exclude:
-  - ".sass-cache"
-  - "_site"
-  - "Gemfile"
-  - "Gemfile.lock"
-  - "README.md"
-  - "LICENSE"
-  - "*.gemspec"
-  - "node_modules"
-  - "package*.json"
-  - "preview.html"
-  - "generate_preview.py"
-  - "preview.png"
-  - "github_key"
-  - "github_key.pub"
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - .gitignore
+
+# Theme settings
+show_excerpts: true
+
+# Author
+author:
+  name: 博主
+  email: blog@example.com
