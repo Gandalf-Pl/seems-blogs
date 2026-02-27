@@ -1,8 +1,14 @@
 # Site Configuration
-title: 我的博客
-description: 一个基于 Jekyll 的个人博客
+title: 小六子的博客
+description: 专注AI领域，每天一篇干货
+tagline: AI · 技术 · 思考
 url: "https://gandalf-pl.github.io"
 baseurl: "/seems-blogs"
+
+# Author
+author:
+  name: 小六子
+  email: xiaoliuzi@example.com
 
 # Build settings
 markdown: kramdown
