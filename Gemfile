@@ -1,12 +1,14 @@
 source "https://rubygems.org"
 
 gem "jekyll", "~> 4.3"
-gem "jekyll-theme-chirpy", "~> 6.5"
 
+# GitHub Pages 兼容的插件
 group :jekyll_plugins do
   gem "jekyll-feed"
   gem "jekyll-sitemap"
   gem "jekyll-seo-tag"
+  gem "jekyll-paginate"
+  gem "jekyll-archives"
 end
 
 platforms :mingw, :x64_mingw, :mswin, :jruby do
