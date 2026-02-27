@@ -1,76 +1,27 @@
 # Site Configuration
-# 使用 Chirpy 主题
-remote_theme: cotes2020/jekyll-theme-chirpy
-
-# The base hostname & protocol for your site
+title: 我的博客
+description: 一个基于 Jekyll 的个人博客
 url: "https://gandalf-pl.github.io"
 baseurl: "/seems-blogs"
 
-# Site Settings
-lang: zh-CN
-timezone: Asia/Shanghai
-title: "我的博客"
-tagline: "记录思考，分享技术"
-description: "一个基于 Jekyll + Chirpy 的个人博客"
+# Theme - GitHub Pages 支持的主题
+theme: minima
 
-# Author
-author:
-  name: "博主"
-  email: "blog@example.com"
-  links:
-    - label: "GitHub"
-      icon: "fab fa-github"
-      url: "https://github.com/Gandalf-Pl"
+# Build settings
+markdown: kramdown
+highlighter: rouge
+permalink: /:year/:month/:day/:title/
 
-# Theme Settings
-theme_mode: dark
-dark_mode: true
-
-# Avatar
-avatar: 
+# Minima 主题设置
+minima:
+  skin: dark
+  social_links:
+    - { platform: github, user_url: "https://github.com/Gandalf-Pl" }
 
 # Plugins
 plugins:
   - jekyll-feed
   - jekyll-sitemap
-  - jekyll-seo-tag
-  - jekyll-paginate
-  - jekyll-archives
-
-# Pagination
-paginate: 10
-paginate_path: "/page:num/"
-
-# Archives
-jekyll-archives:
-  enabled: [categories, tags]
-  layouts:
-    category: category
-    tag: tag
-  permalinks:
-    tag: /tags/:name/
-    category: /categories/:name/
-
-# Collections
-collections:
-  tabs:
-    output: true
-    sort_by: order
-
-# Defaults
-defaults:
-  - scope:
-      path: ""
-      type: posts
-    values:
-      layout: post
-      comments: true
-      toc: true
-  - scope:
-      path: ""
-      type: tabs
-    values:
-      layout: page
 
 # Exclude
 exclude:
@@ -78,7 +29,9 @@ exclude:
   - Gemfile.lock
   - README.md
   - .gitignore
-  - ".sass-cache"
-  - "_site"
-  - "*.gemspec"
-  - "node_modules"
+  - _tabs
+
+# Author
+author:
+  name: 博主
+  email: blog@example.com
