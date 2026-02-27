@@ -23,7 +23,8 @@ layout: default
             
             {%- for post in site.posts -%}
             <div class="line post-item">
-                <span class="date">{{ post.date | date: "%b %d" }}</span>
+                <span class="date">{{ post.date | date: "%m-%d" }}</span>
+                <span class="time">{{ post.date | date: "%H:%M" }}</span>
                 <a href="{{ post.url | relative_url }}" class="post-link">{{ post.title }}</a>
             </div>
             {%- endfor -%}

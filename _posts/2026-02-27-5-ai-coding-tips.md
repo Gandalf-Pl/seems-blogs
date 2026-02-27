@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "5个让我效率翻倍的AI编程技巧"
-date: 2026-02-27 15:30:00 +0800
+date: 2026-02-27 14:00:00 +0800
 categories: [实战指南]
 tags: [AI编程, Cursor, 效率工具, 开发技巧]
 ---
