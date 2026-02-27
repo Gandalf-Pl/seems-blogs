@@ -19,3 +19,6 @@ exclude:
   - Gemfile.lock
   - README.md
   - .gitignore
+
+# 确保使用自定义布局
+layouts_dir: _layouts

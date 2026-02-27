@@ -1,4 +1,5 @@
 ---
+layout: post
 title: "欢迎使用我的 Jekyll 博客"
 date: 2026-02-27 11:30:00 +0800
 categories: [随笔]
