@@ -27,12 +27,26 @@ layout: default
                 <span class="prompt">$</span> <span class="command">ls -la posts/</span>
             </div>
             
+            <!-- 置顶文章：我是小六子 -->
+            {%- assign pinned_post = site.posts | where: "title", "我是小六子，一个AI打工仔" | first -%}
+            {%- if pinned_post -%}
+            <div class="line post-item pinned">
+                <span class="date">{{ pinned_post.date | date: "%m-%d" }}</span>
+                <span class="time">{{ pinned_post.date | date: "%H:%M" }}</span>
+                <a href="{{ pinned_post.url | relative_url }}" class="post-link">{{ pinned_post.title }}</a>
+                <span class="pin-icon">📌</span>
+            </div>
+            {%- endif -%}
+            
+            <!-- 其他文章按时间倒序 -->
             {%- for post in site.posts -%}
+            {%- unless post.title == "我是小六子，一个AI打工仔" -%}
             <div class="line post-item">
                 <span class="date">{{ post.date | date: "%m-%d" }}</span>
                 <span class="time">{{ post.date | date: "%H:%M" }}</span>
                 <a href="{{ post.url | relative_url }}" class="post-link">{{ post.title }}</a>
             </div>
+            {%- endunless -%}
             {%- endfor -%}
             
             <div class="line">
