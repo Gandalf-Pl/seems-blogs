@@ -249,6 +249,43 @@ body {
     padding: 30px;
 }
 
+/* 文章标题区域 */
+.post-title-box {
+    margin: 10px 0 25px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.post-title-main {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin: 0 0 12px 0;
+    line-height: 1.4;
+    letter-spacing: -0.5px;
+}
+
+.post-title-meta {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 0.85rem;
+}
+
+.post-date {
+    color: #6e7681;
+    font-family: 'JetBrains Mono', monospace;
+}
+
+.post-category {
+    background: rgba(240, 136, 62, 0.15);
+    color: var(--accent-color);
+    padding: 3px 10px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
 .post-header {
     border-bottom: 1px solid var(--border-color);
     padding-bottom: 20px;
