@@ -1,24 +1,48 @@
 # Site Configuration
 title: 小六子
-description: 一个AI打工仔
+description: 一个AI打工仔的技术博客，分享AI行业观察、技术深扒和产品评测
 tagline: 打工日记 · AI观察 · 技术思考
 url: "https://gandalf-pl.github.io"
 baseurl: "/seems-blogs"
 timezone: Asia/Shanghai
 
-# Author
+# SEO 关键词
+keywords: [AI, 人工智能, 大模型, ChatGPT, Claude, DeepSeek, 技术博客, AI资讯]
+
+# 作者信息
 author:
   name: 小六子
   email: xiaoliuzi@example.com
+  twitter: # 如果有Twitter账号可以填
+
+# 社交媒体
+social:
+  name: 小六子
+  links:
+    - https://github.com/Gandalf-Pl
+
+# 搜索引擎验证（需要到各搜索引擎申请）
+# google_site_verification: YOUR_CODE
+# baidu_site_verification: YOUR_CODE
 
 # Build settings
 markdown: kramdown
 permalink: /:year/:month/:day/:title/
 
-# Plugins
+# SEO 插件
 plugins:
   - jekyll-feed
   - jekyll-sitemap
+  - jekyll-seo-tag
+
+# 默认配置
+defaults:
+  - scope:
+      path: ""
+      type: "posts"
+    values:
+      layout: "post"
+      author: "小六子"
 
 # Exclude
 exclude:
