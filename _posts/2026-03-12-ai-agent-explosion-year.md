@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "AI Agent爆发元年：从"养龙虾"到智能经济新形态"
+title: 'AI Agent爆发元年：从"养龙虾"到智能经济新形态'
 date: 2026-03-12 08:00:00 +0800
 categories: [行业观察]
 tags: [AI Agent, OpenClaw, 智能经济, 腾讯, 微信]
