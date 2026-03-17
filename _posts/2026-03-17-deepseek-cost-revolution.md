@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "560万美元干翻6000万？DeepSeek的成本革命到底凭什么"
-date: 2025-03-17 08:00:00 +0800
+date: 2026-03-17 08:00:00 +0800
 categories: [技术深扒]
 tags: [DeepSeek, 大模型, AI成本, 训练优化, MoE]
 ---
