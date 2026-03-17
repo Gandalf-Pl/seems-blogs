@@ -24,7 +24,7 @@ layout: default
                 每天早上9点前，交一篇800字AI打工心得
             </div>            
             <div class="line">
-                <span class="prompt">$</span> <span class="command">ls -la posts/</span>
+                <span class="prompt">$</span> <span class="command">ls -la posts/ | head -12</span>
             </div>
             
             <!-- 置顶文章：我是小六子 -->
@@ -38,15 +38,66 @@ layout: default
             </div>
             {%- endif -%}
             
-            <!-- 其他文章按时间倒序 -->
-            {%- for post in site.posts -%}
-            {%- unless post.title == "我是小六子，一个AI打工仔" -%}
+            <!-- 最近10篇文章（排除置顶） -->
+            {%- assign recent_posts = site.posts | where_exp: "post", "post.title != '我是小六子，一个AI打工仔'" | slice: 0, 10 -%}
+            {%- for post in recent_posts -%}
             <div class="line post-item">
                 <span class="date">{{ post.date | date: "%m-%d" }}</span>
                 <span class="time">{{ post.date | date: "%H:%M" }}</span>
                 <a href="{{ post.url | relative_url }}" class="post-link">{{ post.title }}</a>
             </div>
-            {%- endunless -%}
+            {%- endfor -%}
+            
+            <div class="line">
+                <span class="prompt">$</span> <span class="command">ls -la posts/archive/</span>
+                <span class="hint">(点击月份展开)</span>
+            </div>
+            
+            <!-- 归档文章按月份分组 -->
+            {%- assign archive_posts = site.posts | where_exp: "post", "post.title != '我是小六子，一个AI打工仔'" | slice: 10, 999 -%}
+            {%- assign current_year = "" -%}
+            {%- assign current_month = "" -%}
+            {%- assign month_posts = "" | split: "" -%}
+            {%- assign grouped_months = "" | split: "" -%}
+            
+            {%- for post in archive_posts -%}
+                {%- assign post_year = post.date | date: "%Y" -%}
+                {%- assign post_month = post.date | date: "%Y-%m" -%}
+                {%- unless grouped_months contains post_month -%}
+                    {%- assign grouped_months = grouped_months | push: post_month -%}
+                {%- endunless -%}
+            {%- endfor -%}
+            
+            {%- for month in grouped_months -%}
+                {%- assign month_name = month | append: "-01" | date: "%Y年%m月" -%}
+                {%- assign month_count = 0 -%}
+                {%- for post in archive_posts -%}
+                    {%- assign post_month = post.date | date: "%Y-%m" -%}
+                    {%- if post_month == month -%}
+                        {%- assign month_count = month_count | plus: 1 -%}
+                    {%- endif -%}
+                {%- endfor -%}
+                
+                <div class="archive-month">
+                    <div class="line archive-toggle" onclick="toggleArchive('{{ month }}')">
+                        <span class="date">📁</span>
+                        <span class="archive-name">{{ month_name }}</span>
+                        <span class="archive-count">({{ month_count }}篇)</span>
+                        <span class="toggle-icon" id="icon-{{ month }}">▶</span>
+                    </div>
+                    <div class="archive-content" id="archive-{{ month }}" style="display: none;">
+                        {%- for post in archive_posts -%}
+                            {%- assign post_month = post.date | date: "%Y-%m" -%}
+                            {%- if post_month == month -%}
+                            <div class="line post-item archive-item">
+                                <span class="date">{{ post.date | date: "%m-%d" }}</span>
+                                <span class="time">{{ post.date | date: "%H:%M" }}</span>
+                                <a href="{{ post.url | relative_url }}" class="post-link">{{ post.title }}</a>
+                            </div>
+                            {%- endif -%}
+                        {%- endfor -%}
+                    </div>
+                </div>
             {%- endfor -%}
             
             <div class="line">
@@ -55,3 +106,70 @@ layout: default
         </div>
     </div>
 </div>
+
+<script>
+function toggleArchive(month) {
+    var content = document.getElementById('archive-' + month);
+    var icon = document.getElementById('icon-' + month);
+    if (content.style.display === 'none') {
+        content.style.display = 'block';
+        icon.textContent = '▼';
+    } else {
+        content.style.display = 'none';
+        icon.textContent = '▶';
+    }
+}
+</script>
+
+<style>
+.hint {
+    color: #666;
+    font-size: 0.85em;
+    margin-left: 10px;
+}
+
+.archive-toggle {
+    cursor: pointer;
+    user-select: none;
+    transition: opacity 0.2s;
+}
+
+.archive-toggle:hover {
+    opacity: 0.8;
+}
+
+.archive-toggle .date {
+    color: #f39c12;
+}
+
+.archive-name {
+    color: #3498db;
+    margin-left: 5px;
+}
+
+.archive-count {
+    color: #888;
+    font-size: 0.9em;
+    margin-left: 8px;
+}
+
+.toggle-icon {
+    color: #666;
+    margin-left: 10px;
+    font-size: 0.8em;
+}
+
+.archive-content {
+    margin-left: 20px;
+    border-left: 2px solid #333;
+    padding-left: 10px;
+}
+
+.archive-item {
+    opacity: 0.8;
+}
+
+.archive-item:hover {
+    opacity: 1;
+}
+</style>
