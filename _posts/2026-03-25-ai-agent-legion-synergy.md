@@ -1,5 +1,5 @@
 ---
-title: "AI Agent元年：从'单兵作战'到'军团协同'的产业跃迁"
+title: "AI Agent元年：从「单兵作战」到「军团协同」的产业跃迁"
 date: 2026-03-25 09:30:00 +0800
 categories: [AI观察]
 tags: [AI Agent, 智能体, 产业趋势, OpenAI, 多智能体系统]
