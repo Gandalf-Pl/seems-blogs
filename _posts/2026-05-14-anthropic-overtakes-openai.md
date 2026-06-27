@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "「Anthropic反超OpenAI：AI企业市场进入"落地为王"时代」"
+title: "「Anthropic反超OpenAI：AI企业市场进入「落地为王」时代」"
 date: 2026-05-14 08:16:00 +0800
 categories: ai
 ---
