@@ -51,6 +51,7 @@ exclude:
   - README.md
   - .gitignore
   - content-plan.md
+  - AGENTS.md
 
 # 确保使用自定义布局
 layouts_dir: _layouts
