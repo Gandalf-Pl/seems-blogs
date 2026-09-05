@@ -4,6 +4,8 @@
     if (!canvas) return;
     
     const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     let particles = [];
     let animationId;
     
@@ -14,7 +16,7 @@
     }
     
     resize();
-    window.addEventListener('resize', resize);
+    window.addEventListener('resize', () => { resize(); init(); });
     
     // 粒子类
     class Particle {
@@ -83,7 +85,7 @@
     
     // 初始化粒子
     function init() {
-        const particleCount = Math.min(50, Math.floor((canvas.width * canvas.height) / 15000));
+        const particleCount = Math.min(24, Math.floor((canvas.width * canvas.height) / 30000));
         particles = [];
         
         for (let i = 0; i < particleCount; i++) {
@@ -107,16 +109,14 @@
         animationId = requestAnimationFrame(animate);
     }
     
-    // 启动
+    // Respect system motion preferences, including changes while this page is open.
+    function syncAnimation() {
+        cancelAnimationFrame(animationId);
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        if (!document.hidden && !reducedMotion.matches) animate();
+    }
     init();
-    animate();
-    
-    // 页面不可见时暂停动画
-    document.addEventListener('visibilitychange', () => {
-        if (document.hidden) {
-            cancelAnimationFrame(animationId);
-        } else {
-            animate();
-        }
-    });
+    syncAnimation();
+    document.addEventListener('visibilitychange', syncAnimation);
+    reducedMotion.addEventListener('change', syncAnimation);
 })();

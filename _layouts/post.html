@@ -1,125 +1,26 @@
 ---
 layout: default
 ---
-
-<div class="terminal-box">
-    <div class="terminal-header">
-        <span class="terminal-btn red"></span>
-        <span class="terminal-btn yellow"></span>
-        <span class="terminal-btn green"></span>
-        <span class="terminal-title">{{ page.title | slugify }}.md — vim</span>
-    </div>
-    
-    <div class="terminal-body post-terminal">
-        <!-- 文章头部信息 -->
-        <div class="post-info-line">
-            <span class="prompt">$</span> <span class="command">stat</span> <span class="file-arg">{{ page.title | slugify }}.md</span>
-        </div>
-        
-        <div class="post-stats">
-            <div class="stat-item">
-                <span class="stat-label">File:</span> <span class="stat-value">{{ page.title }}</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-label">Size:</span> <span class="stat-value">{{ content | size }} bytes</span>
-            </div>
-            <div class="stat-item">
-                <span class="stat-label">Modify:</span> <span class="stat-value">{{ page.date | date: "%Y-%m-%d %H:%M:%S" }}</span>
-            </div>
-            {% if page.categories %}
-            <div class="stat-item">
-                <span class="stat-label">Category:</span> <span class="stat-value">{{ page.categories | join: ", " }}</span>
-            </div>
-            {% endif %}
-            {% if page.tags %}
-            <div class="stat-item">
-                <span class="stat-label">Tags:</span> <span class="stat-value tags">{{ page.tags | join: " " }}</span>
-            </div>
-            {% endif %}
-        </div>
-        
-        <!-- 文章标题 -->
-        <div class="post-title-box">
-            <h1 class="post-title-main">{{ page.title }}</h1>
-            <div class="post-title-meta">
-                <span class="post-date">{{ page.date | date: "%Y-%m-%d" }}</span>
-                {% if page.categories %}
-                <span class="post-category">{{ page.categories | first }}</span>
-                {% endif %}
-            </div>
-        </div>
-        
-        <!-- 分隔线 -->
-        <div class="terminal-divider">
-            <span class="divider-text">─────── CONTENT ───────</span>
-        </div>
-        
-        <!-- 文章内容 -->
-        <div class="post-content-tech">
-            {{ content }}
-        </div>
-        
-        <!-- 分隔线 -->
-        <div class="terminal-divider">
-            <span class="divider-text">─────── EOF ───────</span>
-        </div>
-        
-        <!-- 评论区域 -->
-        <div class="terminal-divider">
-            <span class="divider-text">─────── COMMENTS ───────</span>
-        </div>
-        
-        <div class="post-comments">
-            <div class="post-info-line">
-                <span class="prompt">$</span> <span class="command">cat</span> <span class="file-arg">comments.md</span>
-            </div>
-            <div class="comments-hint">
-                <span class="comment-icon">💬</span> 使用 GitHub 账号登录即可发表评论
-            </div>
-            <div class="giscus"></div>
-            <script src="https://giscus.app/client.js"
-                data-repo="Gandalf-Pl/seems-blogs"
-                data-repo-id="R_kgDORaBhDw"
-                data-category="General"
-                data-category-id="DIC_kwDORaBhD84C3o8c"
-                data-mapping="specific"
-                data-term="{{ page.url }}"
-                data-strict="0"
-                data-reactions-enabled="1"
-                data-emit-metadata="0"
-                data-input-position="bottom"
-                data-theme="dark"
-                data-lang="zh-CN"
-                crossorigin="anonymous"
-                async>
-            </script>
-        </div>
-        
-        <!-- 导航 -->
-        <div class="post-nav">
-            <div class="line">
-                <span class="prompt">$</span> <span class="command">cd ..</span>
-            </div>            
-            <div class="nav-links">
-                <a href="{{ '/' | relative_url }}" class="nav-link">
-                    <span class="nav-arrow">←</span> 返回首页
-                </a>
-                
-                {% if page.previous %}
-                <a href="{{ page.previous.url | relative_url }}" class="nav-link">
-                    <span class="nav-arrow">↑</span> 上一篇: {{ page.previous.title }}
-                </a>
-                {% endif %}
-                
-                {% if page.next %}
-                <a href="{{ page.next.url | relative_url }}" class="nav-link">
-                    <span class="nav-arrow">↓</span> 下一篇: {{ page.next.title }}
-                </a>
-                {% endif %}
-            </div>            
-            <div class="line">
-                <span class="prompt">$</span> <span class="cursor">█</span>
-            </div>
-        </div>
-    </div>
-</div>
+<article class="terminal-box reading-shell">
+  <div class="terminal-header"><span class="terminal-dots" aria-hidden="true">● ● ●</span><span class="terminal-title">~/posts · reading mode</span></div>
+  <div class="terminal-body post-terminal">
+    <header class="post-title-box">
+      <a class="back-link" href="{{ '/' | relative_url }}">← 全部文章</a>
+      <h1 class="post-title-main">{{ page.title | escape }}</h1>
+      {% assign reading_minutes = content | strip_html | strip_newlines | size | divided_by: 400 | plus: 1 %}
+      <div class="post-title-meta"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%Y-%m-%d' }}</time><span class="post-category">{{ page.categories | first | default: 'AI 观察' | escape }}</span><span>约 {{ reading_minutes }} 分钟阅读</span></div>
+    </header>
+    <details class="reading-toc" id="reading-toc" hidden><summary>本文目录</summary><nav aria-label="本文目录"><ol id="toc-list"></ol></nav></details>
+    <div class="post-content-tech">{{ content }}</div>
+    <nav class="post-nav" aria-label="文章导航">
+      {% if page.previous %}<a class="nav-link" href="{{ page.previous.url | relative_url }}"><span class="muted">上一篇</span><span>{{ page.previous.title | escape }}</span></a>{% endif %}
+      {% if page.next %}<a class="nav-link" href="{{ page.next.url | relative_url }}"><span class="muted">下一篇</span><span>{{ page.next.title | escape }}</span></a>{% endif %}
+    </nav>
+    <section class="post-comments" aria-labelledby="comments-title">
+      <h2 id="comments-title">交流与讨论</h2><p class="muted">使用 GitHub 账号参与讨论，分享你的观察。</p>
+      <div class="giscus"></div>
+      <script src="https://giscus.app/client.js" data-repo="Gandalf-Pl/seems-blogs" data-repo-id="R_kgDORaBhDw" data-category="General" data-category-id="DIC_kwDORaBhD84C3o8c" data-mapping="specific" data-term="{{ page.url }}" data-strict="0" data-reactions-enabled="1" data-emit-metadata="0" data-input-position="bottom" data-theme="dark" data-lang="zh-CN" data-loading="lazy" crossorigin="anonymous" async></script>
+    </section>
+  </div>
+</article>
+<script src="{{ '/assets/js/reading.js' | relative_url }}" defer></script>
